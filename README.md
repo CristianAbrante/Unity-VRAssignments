@@ -12,7 +12,7 @@ Crear un escenario básico para la escena del proyecto para la evaluación final
 
 
 ### Solución
-- Cuando Ethan choca con un barril oscuro se le baja la puntuación (poder) y todos los barriles oscuros se vuelven rojos.
+- Cuando Ethan choca con un barril oscuro se le baja la puntuación (poder) y todos los barriles oscuros cambian a otro color aleatorio.
 - Cuando Ethan choca con un barril claro, se le sube la puntuación.
 
 ### GIF de la escena

@@ -2,36 +2,51 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public delegate void collisionAction();
+
 public class MinusCollisionController : MonoBehaviour
 {
+    public static event collisionAction onCollision;
+    private Color originalColor;
 
-    private bool changedColor = false;
-
-    private void Start()
+    public void Start()
     {
-        CollisionDetection.collisionDetectionInstance.minusCollision += DecrementPower;
-        CollisionDetection.collisionDetectionInstance.minusCollision += ChangeColor;
+        originalColor = this.GetComponent<Renderer>().material.color;
     }
 
-    void DecrementPower()
+    private void OnTriggerEnter(Collider other)
     {
-        if(CollisionDetection.powerIndex > 0)
-            CollisionDetection.powerIndex--;
+        if(other.CompareTag("Player"))
+            GameController.action = decreasePower;
     }
 
-    void ChangeColor()
+    private void OnTriggerStay(Collider other)
     {
-        GameObject[] barrels = GameObject.FindGameObjectsWithTag("MinusBarrel");
+        
+    }
 
+    private void OnTriggerExit(Collider other)
+    {
+        foreach (GameObject barrel in GameObject.FindGameObjectsWithTag("MinusBarrel"))
+        {
+            barrel.GetComponent<Renderer>().material.color = originalColor;
+        }
+    }
+
+    void decreasePower()
+    {
         float red = Random.Range(0F, 1F);
         float green = Random.Range(0, 1F);
         float blue = Random.Range(0, 1F);
 
-        foreach (GameObject barrel in barrels) {
-            Renderer rend = barrel.GetComponent<Renderer>();
-            rend.material.color = new Color(red, green, blue);
-
+        if (GameController.powerScore > 0)
+        {
+            GameController.powerScore--;
+            foreach (GameObject barrel in GameObject.FindGameObjectsWithTag("MinusBarrel"))
+            {
+                barrel.GetComponent<Renderer>().material.color = new Color(red, green, blue);
+            }
+            GameController.updateBoard();
         }
-
     }
 }

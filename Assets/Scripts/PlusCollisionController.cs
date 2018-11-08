@@ -2,14 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class PlusCollisionController : MonoBehaviour {
 
-    private void Start()
+    private void OnTriggerEnter(Collider other)
     {
-        CollisionDetection.collisionDetectionInstance.pluscollision += IncrementPower;
+        if (other.CompareTag("Player"))
+            GameController.action = IncreasePower;
     }
 
-    void IncrementPower() {
-        CollisionDetection.powerIndex++;
+    public void IncreasePower() {
+        GameController.powerScore++;
+        GameController.updateBoard();
     }
+   
 }

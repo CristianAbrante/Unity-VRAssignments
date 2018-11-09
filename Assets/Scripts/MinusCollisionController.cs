@@ -11,42 +11,25 @@ public class MinusCollisionController : MonoBehaviour
 
     public void Start()
     {
+        GameController.onMinusCollition += changeColor;
         originalColor = this.GetComponent<Renderer>().material.color;
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("Player"))
-            GameController.action = decreasePower;
-    }
-
-    private void OnTriggerStay(Collider other)
-    {
-        
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        foreach (GameObject barrel in GameObject.FindGameObjectsWithTag("MinusBarrel"))
+        if (other.CompareTag("Player"))
         {
-            barrel.GetComponent<Renderer>().material.color = originalColor;
+            GameController.decrementScore();
         }
     }
 
-    void decreasePower()
-    {
-        float red = Random.Range(0F, 1F);
-        float green = Random.Range(0, 1F);
-        float blue = Random.Range(0, 1F);
-
-        if (GameController.powerScore > 0)
-        {
-            GameController.powerScore--;
-            foreach (GameObject barrel in GameObject.FindGameObjectsWithTag("MinusBarrel"))
-            {
-                barrel.GetComponent<Renderer>().material.color = new Color(red, green, blue);
-            }
-            GameController.updateBoard();
-        }
+    void changeColor() {
+        this.GetComponent<Renderer>().material.color = Color.white;
+        Invoke("restoreColor", 1);
     }
+
+    void restoreColor() {
+        this.GetComponent<Renderer>().material.color = originalColor;
+    }
+
 }

@@ -5,11 +5,9 @@ using UnityEngine.UI;
 
 public class GameController : MonoBehaviour {
 
-    public static event Event EventHandler;
-    public delegate void Event();
-
-    public delegate void OnCollition();
-    public static OnCollition action;
+    public delegate void genericEvent();
+    public static event genericEvent onMinusCollition;
+    public static event genericEvent lightIntensity;
 
     public static GameController gameControllerInstance;
 
@@ -36,19 +34,22 @@ public class GameController : MonoBehaviour {
             gameControllerInstance.powerScoreBoard.text = "Power: " + powerScore;
     }
 
+    public static void decrementScore() {
+        onMinusCollition();
+
+        if (powerScore > 0)
+        {
+            powerScore--;
+            updateBoard();
+        }
+    }
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.L)) {
             lightEnabled.enabled = !lightEnabled.enabled;
         }
 
-        if (action != null) {
-            action();
-            action = null;
-        }
-
-
-        
     }
 
 }

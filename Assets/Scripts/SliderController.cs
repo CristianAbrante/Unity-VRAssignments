@@ -11,8 +11,6 @@ public class SliderController : MonoBehaviour {
     public GameObject lightControl;
     public GameObject sizeControl;
 
-    
-
     // Use this for initialization
     void Start () {
 		lightSlider.onValueChanged.AddListener(changeLightIntensity);

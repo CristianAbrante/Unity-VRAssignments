@@ -8,7 +8,7 @@ public class PlusCollisionController : MonoBehaviour {
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
-            GameController.action = IncreasePower;
+            IncreasePower();
     }
 
     public void IncreasePower() {

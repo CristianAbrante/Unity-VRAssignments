@@ -10,5 +10,5 @@ Crear una escena en la que se haga uso de dialogflow.
 
 ### GIF de la escena
 
-![Scene gif](http://recordit.co/FvPnduY5Ai)
+[Scene gif](http://recordit.co/FvPnduY5Ai)
 

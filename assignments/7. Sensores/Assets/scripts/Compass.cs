@@ -8,16 +8,14 @@ public class Compass : MonoBehaviour {
         set; get;
     }
 
-    public float trueHeading;
-
-	// Use this for initialization
 	void Start () {
         Instance = this;
         DontDestroyOnLoad(gameObject);
 	}
-	
-    public void UpdateCompass()
-    {
-        this.trueHeading = Input.compass.trueHeading;
+
+    public float Heading {
+        get {
+            return Input.compass.trueHeading;
+        }
     }
 }

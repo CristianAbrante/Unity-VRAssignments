@@ -9,6 +9,6 @@ public class UpdateCompassText : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         compassText.text = 
-            "Compass:" + Compass.Instance.trueHeading.ToString();
+            "Compass:" + Compass.Instance.Heading.ToString();
 	}
 }

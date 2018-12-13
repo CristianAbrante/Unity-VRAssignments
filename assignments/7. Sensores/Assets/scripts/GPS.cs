@@ -9,22 +9,27 @@ public class GPS : MonoBehaviour {
         set; get;
     }
 
-    private const bool isUnityRemote = true;
-
-    public float latitude;
-    public float longitude;
-    public float altitude;
-
     void Start() {
         Instance = this;
         DontDestroyOnLoad(gameObject);
     }
 
-    public void UpdateGPS()
-    {
-        this.latitude = Input.location.lastData.latitude;
-        this.longitude = Input.location.lastData.longitude;
-        this.altitude = Input.location.lastData.altitude;
+    public float Latitude {
+        get {
+            return Input.location.lastData.latitude;
+        }
+    }
+
+    public float Longitude {
+        get {
+            return Input.location.lastData.longitude;
+        }
+    }
+
+    public float Altitude {
+        get {
+            return Input.location.lastData.altitude;
+        }
     }
 }
 

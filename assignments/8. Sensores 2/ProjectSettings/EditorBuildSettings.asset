@@ -4,4 +4,11 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/scenes/microphone.unity
+    guid: f0959a828e55de842a878ca334ecdc5f
+  - enabled: 1
+    path: Assets/scenes/camera.unity
+    guid: ee4a58809b8f7474a92d2848e84e9d9a
+  m_configObjects: {}
